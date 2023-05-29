@@ -1,5 +1,6 @@
 package com.rickyandrean.batikclassification.presentation.main
 
+import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,5 +31,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, CameraActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    companion object {
+        const val CAMERA_X_RESULT = 200
+        const val CROP_RESULT = 101
+        val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        const val REQUEST_CODE_PERMISSIONS = 10
     }
 }
