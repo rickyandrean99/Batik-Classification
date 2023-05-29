@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="sapphire">#FF52B2BF</color>
+    <color name="light_orange">#FFFFB26B</color>
     <color name="light_black">#FF222222</color>
 </resources>

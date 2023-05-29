@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupView() {
         supportActionBar?.hide()
         binding.btnTakePicture.setBackgroundResource(R.drawable.bg_sapphire)
+        binding.btnTips.setBackgroundResource(R.drawable.bg_light_orange)
     }
 
     private fun setupListener() {
