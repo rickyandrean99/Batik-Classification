@@ -13,5 +13,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+        binding.btnTakePicture.setBackgroundResource(R.drawable.bg_sapphire)
     }
 }
