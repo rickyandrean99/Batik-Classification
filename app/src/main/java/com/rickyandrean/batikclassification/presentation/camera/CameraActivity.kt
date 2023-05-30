@@ -17,7 +17,8 @@ import androidx.core.content.ContextCompat
 import com.rickyandrean.batikclassification.databinding.ActivityCameraBinding
 import com.rickyandrean.batikclassification.helper.createFile
 import com.rickyandrean.batikclassification.helper.uriToFile
-import com.rickyandrean.batikclassification.presentation.main.MainActivity
+import com.rickyandrean.batikclassification.presentation.preview.PreviewActivity
+import java.io.File
 
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
@@ -54,15 +55,15 @@ class CameraActivity : AppCompatActivity() {
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this,
-                MainActivity.REQUIRED_PERMISSIONS,
-                MainActivity.REQUEST_CODE_PERMISSIONS
+                PreviewActivity.REQUIRED_PERMISSIONS,
+                PreviewActivity.REQUEST_CODE_PERMISSIONS
             )
         } else {
             startCamera()
         }
     }
 
-    private fun allPermissionsGranted() = MainActivity.REQUIRED_PERMISSIONS.all {
+    private fun allPermissionsGranted() = PreviewActivity.REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
@@ -72,7 +73,7 @@ class CameraActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == MainActivity.REQUEST_CODE_PERMISSIONS) {
+        if (requestCode == PreviewActivity.REQUEST_CODE_PERMISSIONS) {
             if (!allPermissionsGranted()) {
                 Toast.makeText(this, "Camera access not granted", Toast.LENGTH_SHORT).show()
                 finish()
@@ -136,8 +137,7 @@ class CameraActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    // TODO photoFile
-                    finish()
+                    sendBackPicture(photoFile)
                 }
             }
         )
@@ -160,8 +160,16 @@ class CameraActivity : AppCompatActivity() {
             val image: Uri = it.data?.data as Uri
             val file = uriToFile(image, this@CameraActivity)
 
-            // TODO file
-            finish()
+            sendBackPicture(file)
         }
+    }
+
+    private fun sendBackPicture(photoFile: File) {
+        val uri = Uri.fromFile(photoFile)
+
+        val intent = Intent()
+        intent.putExtra("picture", "$uri")
+        setResult(PreviewActivity.CAMERA_X_RESULT, intent)
+        finish()
     }
 }
