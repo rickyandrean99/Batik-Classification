@@ -17,7 +17,14 @@
         android:theme="@style/Theme.BatikClassification"
         tools:targetApi="31">
         <activity
-            android:name=".PreviewActivity"
+            android:name=".presentation.preprocess.PreprocessActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".presentation.preview.PreviewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

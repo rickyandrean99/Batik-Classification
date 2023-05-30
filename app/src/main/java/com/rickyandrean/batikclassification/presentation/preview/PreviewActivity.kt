@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityPreviewBinding
 import com.rickyandrean.batikclassification.helper.uriToFile
+import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
+import com.rickyandrean.batikclassification.presentation.preprocess.PreprocessActivity
 import kotlinx.coroutines.launch
 
 class PreviewActivity : AppCompatActivity() {
@@ -33,10 +35,17 @@ class PreviewActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-
+        supportActionBar?.hide()
+        binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_sapphire)
+        binding.btnPreviewSubmit.setBackgroundResource(R.drawable.bg_sapphire)
     }
 
     private fun setListener() {
+        binding.btnAddRemovePhoto.setOnClickListener {
+            val intent = Intent(this@PreviewActivity, CameraActivity::class.java)
+            startActivity(intent)
+        }
+
 //        with(binding.imagePicker) {
 //            ibAdd.setOnClickListener {
 //                val intent = Intent(requireActivity(), CameraActivity::class.java)
@@ -98,7 +107,7 @@ class PreviewActivity : AppCompatActivity() {
             val result = it.data?.getStringExtra("picture")
             if (result != null) {
                 val image = Uri.parse(result)
-                val intent = Intent(this@PreviewActivity, CropActivity::class.java)
+                val intent = Intent(this@PreviewActivity, PreprocessActivity::class.java)
                 intent.putExtra("image", image.toString())
                 launcherCropImage.launch(intent)
             }
@@ -113,7 +122,7 @@ class PreviewActivity : AppCompatActivity() {
             if (result != null) {
                 val uri = Uri.parse(result)
                 val file = uriToFile(uri!!, this)
-                scanViewModel.setImage(file)
+                previewViewModel.setImage(file)
             }
         }
     }

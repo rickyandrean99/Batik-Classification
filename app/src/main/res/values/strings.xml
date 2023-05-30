@@ -4,4 +4,9 @@
     <string name="batik_about">Batik Classification merupakan aplikasi berbasis Native Android yang bertujuan untuk mendeteksi jenis dari motif Batik Indonesia. Aplikasi dapat mengenali hingga 10 jenis motif batik berbeda menggunakan fitur kamera maupun galeri.</string>
     <string name="take_picture">Ambil Gambar Batik</string>
     <string name="tips">Lihat Panduan</string>
+    <string name="preview_title">Citra Motif Batik</string>
+    <string name="preview_subtitle">Silahkan mengambil foto dari motif batik untuk melakukan klasifikasi batik</string>
+    <string name="no_picture">Belum ada foto</string>
+    <string name="process">Proses Gambar</string>
+    <string name="add_photo">Ambil Gambar</string>
 </resources>

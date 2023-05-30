@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityMainBinding
 import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
+import com.rickyandrean.batikclassification.presentation.preview.PreviewActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupListener() {
         binding.btnTakePicture.setOnClickListener {
-            val intent = Intent(this@MainActivity, CameraActivity::class.java)
+            val intent = Intent(this@MainActivity, PreviewActivity::class.java)
             startActivity(intent)
         }
     }
