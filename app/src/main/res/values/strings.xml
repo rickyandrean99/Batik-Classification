@@ -9,4 +9,5 @@
     <string name="no_picture">Belum ada foto</string>
     <string name="process">Proses Gambar</string>
     <string name="add_photo">Ambil Gambar</string>
+    <string name="remove_photo">Hapus Gambar</string>
 </resources>

@@ -16,6 +16,8 @@ import com.rickyandrean.batikclassification.databinding.ActivityPreviewBinding
 import com.rickyandrean.batikclassification.helper.uriToFile
 import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
 import com.rickyandrean.batikclassification.presentation.preprocess.PreprocessActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PreviewActivity : AppCompatActivity() {
@@ -36,67 +38,63 @@ class PreviewActivity : AppCompatActivity() {
 
     private fun setupView() {
         supportActionBar?.hide()
-        binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_sapphire)
-        binding.btnPreviewSubmit.setBackgroundResource(R.drawable.bg_sapphire)
     }
 
     private fun setListener() {
         binding.btnAddRemovePhoto.setOnClickListener {
-            val intent = Intent(this@PreviewActivity, CameraActivity::class.java)
-            startActivity(intent)
+            if (previewViewModel.image.value == null) {
+                val intent = Intent(this@PreviewActivity, CameraActivity::class.java)
+                launcherIntentCameraX.launch(intent)
+            } else {
+                previewViewModel.setImage(null)
+            }
         }
 
-//        with(binding.imagePicker) {
-//            ibAdd.setOnClickListener {
-//                val intent = Intent(requireActivity(), CameraActivity::class.java)
-//                launcherIntentCameraX.launch(intent)
-//            }
-//            ibDelete.setOnClickListener {
-//                scanViewModel.setImage(null)
-//            }
-//        }
+        previewViewModel.image.observe(this) {
+            if (it != null) {
+                binding.btnPreviewSubmit.isEnabled = true
+                binding.btnPreviewSubmit.setBackgroundResource(R.drawable.bg_sapphire)
+                binding.btnAddRemovePhoto.text = resources.getString(R.string.remove_photo)
+                binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_light_red)
+            } else {
+                binding.btnPreviewSubmit.isEnabled = false
+                binding.btnPreviewSubmit.setBackgroundResource(R.drawable.bg_light_grey)
+                binding.btnAddRemovePhoto.text = resources.getString(R.string.add_photo)
+                binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_sapphire)
+            }
+        }
 
-//        binding.btnSubmit.setOnClickListener {
-//            lifecycleScope.launchWhenStarted {
-//                launch {
-//                    if (scanViewModel.image.value != null) {
-//                        setupSubmitAction(false)
-//                        setupLoadingAnimation(true)
-//
-//                        scanViewModel.uploadImage().collect { response ->
-//                            response.onSuccess {
-//                                it.image = scanViewModel.image.value!!
-//
-//                                val intent = Intent(requireActivity(), PredictActivity::class.java)
-//                                intent.putExtra(PredictActivity.PREDICT_RESPONSE, it)
-//                                intent.putExtra(PredictActivity.PREDICT_IMAGE, scanViewModel.image.value!!)
-//                                startActivity(intent)
-//                            }
-//
-//                            response.onFailure { error ->
-//                                setupSubmitAction(true)
-//                                setupLoadingAnimation(false)
-//                                Toast.makeText(requireActivity(), "Terjadi kesalahan pada aplikasi", Toast.LENGTH_SHORT).show()
-//                                Log.e("debugging_error", error.message.toString())
-//                            }
-//                        }
-//                    } else {
-//                        Toast.makeText(requireActivity(), "Silahkan unggah gambar!", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//        }
+        binding.btnPreviewSubmit.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                if (previewViewModel.image.value != null) {
+                    previewViewModel.classifyImage().collect { response ->
+                        response.onSuccess {
+                            it.image = previewViewModel.image.value!!
+                            Toast.makeText(this@PreviewActivity, "Gambar batik berhasil diklasifikasikan!", Toast.LENGTH_SHORT).show()
+//                            val intent = Intent(this@PreviewActivity, DetailActivity::class.java)
+//                            intent.putExtra(DetailActivity.PREDICT_RESPONSE, it)
+//                            intent.putExtra(DetailActivity.PREDICT_IMAGE, previewViewModel.image.value!!)
+//                            startActivity(intent)
+                        }
+
+                        response.onFailure { error ->
+                            Toast.makeText(this@PreviewActivity, "Terjadi kesalahan pada aplikasi", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun setupObserver() {
         previewViewModel.image.observe(this) {
-//            if (it != null) {
-//                binding.imagePicker.ivImagePreview.setImageBitmap(BitmapFactory.decodeFile(it?.path))
-//                binding.imagePicker.previewText.visibility = View.INVISIBLE
-//            } else {
-//                binding.imagePicker.ivImagePreview.setImageResource(R.drawable.dotted)
-//                binding.imagePicker.previewText.visibility = View.VISIBLE
-//            }
+            if (it != null) {
+                binding.ivImagePreview.setImageBitmap(BitmapFactory.decodeFile(it?.path))
+                binding.tvImagePreview.visibility = View.INVISIBLE
+            } else {
+                binding.ivImagePreview.setImageResource(R.drawable.dotted)
+                binding.tvImagePreview.visibility = View.VISIBLE
+            }
         }
     }
 

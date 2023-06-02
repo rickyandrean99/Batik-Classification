@@ -1,12 +1,10 @@
 package com.rickyandrean.batikclassification.presentation.main
 
-import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityMainBinding
-import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
 import com.rickyandrean.batikclassification.presentation.preview.PreviewActivity
 
 class MainActivity : AppCompatActivity() {
