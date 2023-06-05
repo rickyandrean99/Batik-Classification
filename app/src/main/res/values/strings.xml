@@ -4,10 +4,21 @@
     <string name="batik_about">Batik Classification merupakan aplikasi berbasis Native Android yang bertujuan untuk mendeteksi jenis dari motif Batik Indonesia. Aplikasi dapat mengenali hingga 10 jenis motif batik berbeda menggunakan fitur kamera maupun galeri.</string>
     <string name="take_picture">Ambil Gambar Batik</string>
     <string name="tips">Lihat Panduan</string>
-    <string name="preview_title">Citra Motif Batik</string>
+    <string name="preview_title">Gambar Motif Batik</string>
     <string name="preview_subtitle">Silahkan mengambil foto dari motif batik untuk melakukan klasifikasi batik</string>
     <string name="no_picture">Belum ada foto</string>
     <string name="process">Proses Gambar</string>
     <string name="add_photo">Ambil Gambar</string>
     <string name="remove_photo">Hapus Gambar</string>
+    <string name="tips_title">Panduan Pengambilan Gambar Batik</string>
+    <string name="tips_numbering_1">1. </string>
+    <string name="tips_numbering_2">2. </string>
+    <string name="tips_numbering_3">3. </string>
+    <string name="tips_numbering_4">4. </string>
+    <string name="tips_numbering_5">5. </string>
+    <string name="tips_content_1">Pada halaman utama aplikasi, anda dapat menekan tombol <b>\'Ambil Gambar Batik\'</b> untuk mengambil gambar batik</string>
+    <string name="tips_content_2">Setelah itu anda akan diarahkan ke halaman preview. Pada halaman ini, anda dapat melihat gambar yang anda ambil sebelum diproses. Untuk mengambil gambar, pengguna dapat menekan tombol <b>\'Ambil Batik\'</b>. Apabila gambar yang diambil ternyata kurang bagus, anda dapat menekan tombol <b>\'Hapus Gambar\'</b> dan mengambil gambar kembali</string>
+    <string name="tips_content_3">Anda dapat mengambil gambar motif batik melalui fitur kamera ataupun galeri. Setelah gambar diambil, anda dapat melakukan kustomisasi seperti merotasi, memotong, mengatur pencahayaan, kontras, saturasi dan tingkat ketajamannya. </string>
+    <string name="tips_content_4">Pada saat mengkustomisasi gambar, pastikan tidak ada latar belakang atau objek yang menghalangi motif batik. Berikut merupakan contoh hasil dari pengambilan gambar yang benar dan salah</string>
+    <string name="tips_content_5">asdasd</string>
 </resources>

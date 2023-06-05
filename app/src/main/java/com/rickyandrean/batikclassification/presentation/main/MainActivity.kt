@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityMainBinding
+import com.rickyandrean.batikclassification.presentation.guide.GuideActivity
 import com.rickyandrean.batikclassification.presentation.preview.PreviewActivity
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupListener() {
         binding.btnTakePicture.setOnClickListener {
             val intent = Intent(this@MainActivity, PreviewActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnTips.setOnClickListener {
+            val intent = Intent(this@MainActivity, GuideActivity::class.java)
             startActivity(intent)
         }
     }

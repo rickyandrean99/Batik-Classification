@@ -77,7 +77,7 @@ class PreviewActivity : AppCompatActivity() {
 //                            startActivity(intent)
                         }
 
-                        response.onFailure { error ->
+                        response.onFailure {
                             Toast.makeText(this@PreviewActivity, "Terjadi kesalahan pada aplikasi", Toast.LENGTH_SHORT).show()
                         }
                     }
