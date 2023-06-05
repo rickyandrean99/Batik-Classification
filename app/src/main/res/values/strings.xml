@@ -16,9 +16,17 @@
     <string name="tips_numbering_3">3. </string>
     <string name="tips_numbering_4">4. </string>
     <string name="tips_numbering_5">5. </string>
-    <string name="tips_content_1">Pada halaman utama aplikasi, anda dapat menekan tombol <b>\'Ambil Gambar Batik\'</b> untuk mengambil gambar batik</string>
-    <string name="tips_content_2">Setelah itu anda akan diarahkan ke halaman preview. Pada halaman ini, anda dapat melihat gambar yang anda ambil sebelum diproses. Untuk mengambil gambar, pengguna dapat menekan tombol <b>\'Ambil Batik\'</b>. Apabila gambar yang diambil ternyata kurang bagus, anda dapat menekan tombol <b>\'Hapus Gambar\'</b> dan mengambil gambar kembali</string>
+    <string name="tips_numbering_6">6. </string>
+    <string name="tips_numbering_7">7. </string>
+    <string name="tips_content_1">Pada halaman utama aplikasi, anda dapat menekan tombol <b>\'Ambil Gambar Batik\'</b> untuk mengambil gambar batik.</string>
+    <string name="tips_content_2">Setelah itu anda akan diarahkan ke halaman preview. Pada halaman ini, anda dapat melihat gambar yang anda ambil sebelum diproses. Untuk mengambil gambar, pengguna dapat menekan tombol <b>\'Ambil Batik\'</b>. Apabila gambar yang diambil ternyata kurang bagus, anda dapat menekan tombol <b>\'Hapus Gambar\'</b> dan mengambil gambar kembali.</string>
     <string name="tips_content_3">Anda dapat mengambil gambar motif batik melalui fitur kamera ataupun galeri. Setelah gambar diambil, anda dapat melakukan kustomisasi seperti merotasi, memotong, mengatur pencahayaan, kontras, saturasi dan tingkat ketajamannya. </string>
-    <string name="tips_content_4">Pada saat mengkustomisasi gambar, pastikan tidak ada latar belakang atau objek yang menghalangi motif batik. Berikut merupakan contoh hasil dari pengambilan gambar yang benar dan salah</string>
-    <string name="tips_content_5">asdasd</string>
+    <string name="tips_content_4">Berikut merupakan contoh hasil dari pengambilan gambar yang <b>disarankan</b>. Keseluruhan area gambar mencakup motif batik.</string>
+    <string name="tips_content_5">Berikut merupakan contoh hasil dari pengambilan gambar yang <b>tidak disarankan</b>.</string>
+    <string name="tips_content_6">Setelah sistem berhasil memproses citra, anda akan diarahkan menuju halaman detail dari motif batik terkait.</string>
+    <string name="tips_content_7">Aplikasi dapat melakukan klasifikasi terhadap 10 jenis batik diantaranya Batik Cendrawasih, Geblek Renteng, Insang, Kawung, Mega mendung, Parang, Pring sedapur, Simbut, Sogan, dan Truntum.</string>
+    <string name="tips_false_1">Terdapat latar belakang</string>
+    <string name="tips_false_2">Objek yang menghalangi</string>
+    <string name="tips_false_3">Gambar blur</string>
+    <string name="tips_false_4">Gambar terlalu jauh</string>
 </resources>
