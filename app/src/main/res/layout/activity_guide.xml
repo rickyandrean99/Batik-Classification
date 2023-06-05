@@ -51,7 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appbar_tips">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_guide"
             android:layout_width="match_parent"

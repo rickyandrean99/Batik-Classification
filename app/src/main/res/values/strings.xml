@@ -1,15 +1,21 @@
 <resources>
     <string name="app_name">Batik Classification</string>
     <string name="batik_image">Image of Batik</string>
+
+    <!-- Halaman Main -->
     <string name="batik_about">Batik Classification merupakan aplikasi berbasis Native Android yang bertujuan untuk mendeteksi jenis dari motif Batik Indonesia. Aplikasi dapat mengenali hingga 10 jenis motif batik berbeda menggunakan fitur kamera maupun galeri.</string>
     <string name="take_picture">Ambil Gambar Batik</string>
     <string name="tips">Lihat Panduan</string>
+
+    <!-- Halaman Preview -->
     <string name="preview_title">Gambar Motif Batik</string>
     <string name="preview_subtitle">Silahkan mengambil foto dari motif batik untuk melakukan klasifikasi batik</string>
     <string name="no_picture">Belum ada foto</string>
     <string name="process">Proses Gambar</string>
     <string name="add_photo">Ambil Gambar</string>
     <string name="remove_photo">Hapus Gambar</string>
+
+    <!-- Halaman Guide -->
     <string name="tips_title">Panduan Pengambilan Gambar Batik</string>
     <string name="tips_numbering_1">1. </string>
     <string name="tips_numbering_2">2. </string>
@@ -29,4 +35,15 @@
     <string name="tips_false_2">Objek yang menghalangi</string>
     <string name="tips_false_3">Gambar blur</string>
     <string name="tips_false_4">Gambar terlalu jauh</string>
+
+    <!-- Halaman Detail -->
+    <string name="detail_name_title">Nama Batik</string>
+    <string name="detail_score_title">Tingkat Keyakinan</string>
+    <string name="detail_origin_title">Asal Daerah</string>
+    <string name="detail_description_title">Deskripsi</string>
+
+    <string name="detail_name_content">Batik Geblek Renteng</string>
+    <string name="detail_score_content">98.34%</string>
+    <string name="detail_origin_content">Kulon Progo</string>
+    <string name="detail_description_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed rutrum dui, vel laoreet eros. Etiam id felis quis mi dictum condimentum eu quis nunc. Sed placerat turpis leo</string>
 </resources>

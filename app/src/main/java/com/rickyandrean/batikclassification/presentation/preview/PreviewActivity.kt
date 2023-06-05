@@ -15,6 +15,7 @@ import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityPreviewBinding
 import com.rickyandrean.batikclassification.helper.uriToFile
 import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
+import com.rickyandrean.batikclassification.presentation.detail.DetailActivity
 import com.rickyandrean.batikclassification.presentation.preprocess.PreprocessActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -71,10 +72,11 @@ class PreviewActivity : AppCompatActivity() {
                         response.onSuccess {
                             it.image = previewViewModel.image.value!!
                             Toast.makeText(this@PreviewActivity, "Gambar batik berhasil diklasifikasikan!", Toast.LENGTH_SHORT).show()
-//                            val intent = Intent(this@PreviewActivity, DetailActivity::class.java)
+
+                            val intent = Intent(this@PreviewActivity, DetailActivity::class.java)
 //                            intent.putExtra(DetailActivity.PREDICT_RESPONSE, it)
 //                            intent.putExtra(DetailActivity.PREDICT_IMAGE, previewViewModel.image.value!!)
-//                            startActivity(intent)
+                            startActivity(intent)
                         }
 
                         response.onFailure {
