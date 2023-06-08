@@ -18,9 +18,7 @@ class BatikRepository(application: Application) {
         mBatikDao = db.batikDao()
     }
 
-    fun getBatikDetail(id: Int): LiveData<Batik> = mBatikDao.getBatikDetail(id)
-
-
+    fun getBatikDetail(id: Int): LiveData<Batik?> = mBatikDao.getBatikDetail(id)
 
     // TODO: Model Classification
     suspend fun predictBatik(

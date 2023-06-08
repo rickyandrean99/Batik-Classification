@@ -19,10 +19,13 @@ class DetailActivity : AppCompatActivity() {
 
         val randomNumber = Random.nextInt(1, 11)
         detailViewModel = ViewModelProvider(this, DetailViewModelFactory.getInstance(application))[DetailViewModel::class.java]
+
         detailViewModel.getBatikRandom(randomNumber).observe(this) {
-            binding.tvDetailNameContent.text = it.name
-            binding.tvDetailOriginContent.text = it.origin
-            binding.tvDetailDescriptionContent.text = it.description
+            if (it != null) {
+                binding.tvDetailNameContent.text = it.name
+                binding.tvDetailOriginContent.text = it.origin
+                binding.tvDetailDescriptionContent.text = it.description
+            }
         }
     }
 }

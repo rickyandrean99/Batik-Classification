@@ -50,7 +50,6 @@ abstract class BatikRoomDatabase : RoomDatabase() {
         private fun fillWithStartingData(context: Context, dao: BatikDao) {
             val jsonArray = loadJsonArray(context)
 
-            Log.d("testing", jsonArray.toString())
             try {
                 if (jsonArray != null) {
                     for (i in 0 until jsonArray.length()) {

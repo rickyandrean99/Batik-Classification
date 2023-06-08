@@ -9,5 +9,5 @@ interface BatikDao {
     fun insert(batik: Batik)
 
     @Query("SELECT * FROM batiks WHERE id = :id")
-    fun getBatikDetail(id: Int): LiveData<Batik>
+    fun getBatikDetail(id: Int): LiveData<Batik?>
 }
