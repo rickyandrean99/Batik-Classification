@@ -3,6 +3,7 @@ package com.rickyandrean.batikclassification.presentation.preview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rickyandrean.batikclassification.database.Batik
 import com.rickyandrean.batikclassification.model.PredictResponse
 import com.rickyandrean.batikclassification.repository.BatikRepository
 import kotlinx.coroutines.flow.Flow

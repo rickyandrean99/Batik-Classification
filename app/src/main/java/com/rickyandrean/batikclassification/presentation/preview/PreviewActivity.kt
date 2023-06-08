@@ -30,7 +30,7 @@ class PreviewActivity : AppCompatActivity() {
         binding = ActivityPreviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        previewViewModel = ViewModelProvider(this, PreviewViewModelFactory.getInstance())[PreviewViewModel::class.java]
+        previewViewModel = ViewModelProvider(this, PreviewViewModelFactory.getInstance(application))[PreviewViewModel::class.java]
 
         setupView()
         setListener()

@@ -1,0 +1,64 @@
+{
+  "batiks": [
+    {
+      "id": 1,
+      "name": "Batik Cendrawasih",
+      "origin": "Papua",
+      "description": "Motif batik ini terdiri dari Burung Cendrawasih yang dipadukan dengan berbagai objek yang menggambarkan suasana alam di Papua yang indah. Penggunaan motif cendrawasih dipercaya karena burung ini merupakan jembatan yang menghubungkan kehidupan di bumi dengan surga. Selain itu motif batik ini memiliki makna keanggunan, kegagahan dan menawan yang akan terlihat menarik bagi penggunanya."
+    },
+    {
+      "id": 2,
+      "name": "Batik Geblek Renteng",
+      "origin": "Kulon Progo",
+      "description": "Batik Geblek Renteng merupakan batik yang motifnya berbentuk makanan kuliner khas daerah Kulon Progo bernama Geblek. Geblek sendiri merupakan makanan yang cukup terkenal dan memiliki bentuk yang unik yaitu menyerupai angka 8. Geblek merupakan motif utama pada batik ini yang biasanya dikombinasikan dengan motif Binangun (identitas daerah Kulon Progo) dan motif geblek disusun dengan bentuk naik turun ataupun lainnya yang melambangkan pemandangan alam."
+    },
+    {
+      "id": 3,
+      "name": "Batik Insang",
+      "origin": "Pontianak",
+      "description": "Batik Insang merupakan batik dengan motif khas berbentuk garis-garis simetris yang berasal dari Kota Pontianak, Kalimantan Barat. Dahulu jenis batik ini hanya digunakan oleh kaum bangsawan sebagai identitas yang memisahkan status sosial. Motif batik ini sendiri dipercaya penduduk setempat sebagai rasa syukur manusia terhadap Tuhan Yang Maha Kuasa. Filosofi dibalik motif berbentuk ikan insang tersebut adalah sebagai alat kehidupan, ungkapan syukur atas alam dan lingkungan serta semangat untuk terus maju dalam hal pembangunan."
+    },
+    {
+      "id": 4,
+      "name": "Batik Kawung",
+      "origin": "Yogyakarta",
+      "description": "Batik Kawung memiliki motif unik yaitu kolang-kaling dengan bentuk yang disusun secara geometris. Buah kolang-kaling memiliki makna bahwa kebaikan yang kita lakukan sebaiknya tidak perlu untuk diumbar dan diketahui oleh orang lain. Motif kawung ini memiliki filosofi yaitu menjadikan manusia yang ideal dan unggul bagi penggunanya. Dahulu batik ini diciptakan pada abad 13 oleh sultan pada kerajaan mataram dan hanya digunakan pada kalangan keraton sebelum terpecah menjadi kesultanan surakarta dan kesultanan Yogyakarta dan mulai banyak digunakan oleh berbagai kalangan."
+    },
+    {
+      "id": 5,
+      "name": "Batik Mega Mendung",
+      "origin": "Cirebon",
+      "description": "Batik Mega Mendung memiliki motif seperti awan dan cenderung menggunakan warna biru pada motifnya. Pembuatan batik ini pada awalnya dilatarbelakangi oleh kedatangan pedagang Tionghoa di wilayah cirebon kemudian terjadinya akulturasi dengan Taoisme yang menggambarkan awan sebagai dunia yang luas dan bebas, terciptalah motif batik ini. Batik Mega Mendung memiliki filosofi bahwa penggunanya akan terlihat megah berwibawa namun tetap dalam keadaan tenang. Tidak hanya itu batik ini memiliki makna bahwa manusia harus bisa menahan amarah di setiap kondisi yang mereka alami."
+    },
+    {
+      "id": 6,
+      "name": "Batik Parang",
+      "origin": "Solo & Yogyakarta",
+      "description": "Arti kata Parang disini berasal dari kata Pereng atau Lereng yang diartikan sebagai garis yang menurun dari tinggi ke rendah sehingga berbentuk seperti huruf 'S' yang berjejer secara simetris. Motif batik ini memiliki filosofi yaitu semangat pantang menyerah bahwa sebuah perjuangan tidak akan pernah berhenti begitu mudahnya."
+    },
+    {
+      "id": 7,
+      "name": "Batik Pring Sedapur",
+      "origin": "Magetan",
+      "description": "Motif pada batik ini berbentuk sekumpulan pohon bambu. Bambu sendiri dipercaya memiliki makna keamanan, kenyamanan dan kedamaian. Orang Jawa mempercayai bahwa kita haruslah memberikan keberkahan atau manfaat kepada orang lain dengan memaksimalkan potensi diri kita sendiri."
+    },
+    {
+      "id": 8,
+      "name": "Batik Simbut",
+      "origin": "Suku Sunda",
+      "description": "Batik Simbut merupakan batik yang memiliki motif yang cukup unik yaitu berbentuk daun. Batik ini pada awalnya berkembang di pedalaman suku sunda lebih tepat oleh suku Baduy. Dengan motif dedaunan, batik ini memiliki filosofi yang melambangkan kedekatan manusia dengan alam sekitar."
+    },
+    {
+      "id": 9,
+      "name": "Batik Sogan",
+      "origin": "Solo & Yogyakarta",
+      "description": "Batik sogan merupakan jenis batik yang pembuatannya pada mulanya menggunakan pewarna alami dari pohon soga. Motif batik ini memiliki makna yaitu sebagai simbol keraton bangsa burung yang ditandai dengan corak warna kuning keemasan. Seiring perkembangannya yang disebarluaskan kembali oleh wali songo, motif batik ini memiliki berbagai warna seperti hitam sebagai simbol keduniawian, kuning sebagai simbol nafsu ingin dimuliakan, putih sebagai kebaikan dan coklat sebagai simbol kekhidmatan."
+    },
+    {
+      "id": 10,
+      "name": "Batik Truntum",
+      "origin": "Yogyakarta",
+      "description": "Batik Truntum merupakan motif batik yang diinisiasi oleh permaisuri dari Sultan Hamengkubuwana III yaitu Gusti Kanjeng Ratu Kencana dengan tujuan pada saat itu untuk menghilangkan rasa kesedihan dari permaisuri karena kurangnya perhatian dari sultan. Motif batik ini berbentuk seperti bintang yang memiliki makna yaitu cinta yang bersemi kembali karena dengan kegiatan membatik ini, sang sultan sering memperhatikan kegiatan dari permaisuri GKR Kencana. Sesuai dengan perkembangan zaman, batik ini mengalami berbagai modifikasi pada bagian motifnya namun tetap berdasar pada motif yang dibentuk permaisuri Gusti Kanjeng Ratu Kencana. Batik jenis ini biasa digunakan oleh orang tua dari pasangan mempelai pada acara pernikahan dengan tujuan untuk mengharapkan berkat dari Tuhan Yang Maha Kuasa."
+    }
+  ]
+}
