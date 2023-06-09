@@ -42,8 +42,8 @@
     <string name="detail_origin_title">Asal Daerah</string>
     <string name="detail_description_title">Deskripsi</string>
 
-    <string name="detail_name_content">Batik Geblek Renteng</string>
-    <string name="detail_score_content">98.34%</string>
-    <string name="detail_origin_content">Kulon Progo</string>
-    <string name="detail_description_content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed rutrum dui, vel laoreet eros. Etiam id felis quis mi dictum condimentum eu quis nunc. Sed placerat turpis leo</string>
+    <string name="detail_name_content">-</string>
+    <string name="detail_score_content">98.12%</string>
+    <string name="detail_origin_content">-</string>
+    <string name="detail_description_content">-</string>
 </resources>
