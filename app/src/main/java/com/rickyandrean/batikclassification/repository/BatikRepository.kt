@@ -20,21 +20,6 @@ class BatikRepository(application: Application) {
 
     fun getBatikDetail(id: Int): LiveData<Batik?> = mBatikDao.getBatikDetail(id)
 
-    // TODO: Model Classification
-    suspend fun predictBatik(
-        image: File
-    ): Flow<Result<PredictResponse>> = flow {
-        try {
-            // val requestImageFile = image.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            // val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData("file", image.name, requestImageFile)
-            val response = PredictResponse("Batik Kawung", "98%", null)
-            emit(Result.success(response))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(Result.failure(e))
-        }
-    }
-
     companion object {
         @Volatile
         private var INSTANCE: BatikRepository? = null

@@ -29,7 +29,7 @@ class PreprocessActivity : AppCompatActivity() {
         UCrop.of(uri, Uri.fromFile(File(cacheDir, destinationUri)))
             .withOptions(UCrop.Options())
             .withAspectRatio(1F, 1F)
-            .withMaxResultSize(512, 512)
+            .withMaxResultSize(224, 224)
             .start(this)
     }
 

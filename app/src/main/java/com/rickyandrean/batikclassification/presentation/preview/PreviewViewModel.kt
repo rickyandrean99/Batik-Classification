@@ -1,5 +1,6 @@
 package com.rickyandrean.batikclassification.presentation.preview
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,17 +11,14 @@ import kotlinx.coroutines.flow.Flow
 import java.io.File
 
 class PreviewViewModel(private val repository: BatikRepository) : ViewModel() {
-    private val _image = MutableLiveData<File?>()
-    val image: LiveData<File?> = _image
+    private val _image = MutableLiveData<Bitmap?>()
+    val image: LiveData<Bitmap?> = _image
 
     init {
         _image.value = null
     }
 
-    fun setImage(img: File?) {
+    fun setImage(img: Bitmap?) {
         _image.value = img
     }
-
-    suspend fun classifyImage(): Flow<Result<PredictResponse>> =
-        repository.predictBatik(image.value!!)
 }
