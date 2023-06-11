@@ -165,7 +165,7 @@ class PreviewActivity : AppCompatActivity() {
             intent.putExtra(DetailActivity.PREDICT_RESULT, predictResult)
             startActivity(intent)
         } else {
-            Toast.makeText(this, "Maaf, gambar yang diambil bukan merupakan Batik!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Score hanya " + String.format("%.2f", confidenceScore) + "%", Toast.LENGTH_LONG).show()
         }
     }
 }
