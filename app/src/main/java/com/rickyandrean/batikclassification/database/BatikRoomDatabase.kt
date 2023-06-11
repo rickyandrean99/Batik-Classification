@@ -1,7 +1,6 @@
 package com.rickyandrean.batikclassification.database
 
 import android.content.Context
-import android.util.Log
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
 import org.json.JSONArray

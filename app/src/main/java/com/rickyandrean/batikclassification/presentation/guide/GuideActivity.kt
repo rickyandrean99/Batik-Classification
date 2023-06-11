@@ -2,7 +2,6 @@ package com.rickyandrean.batikclassification.presentation.guide
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityGuideBinding
 
 class GuideActivity : AppCompatActivity() {

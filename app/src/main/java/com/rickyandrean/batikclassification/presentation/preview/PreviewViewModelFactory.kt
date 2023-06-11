@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rickyandrean.batikclassification.repository.BatikRepository
 
-class PreviewViewModelFactory private constructor(private val repository: BatikRepository) :
+class PreviewViewModelFactory private constructor() :
     ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
         when {
             modelClass.isAssignableFrom(PreviewViewModel::class.java) -> {
-                PreviewViewModel(repository) as T
+                PreviewViewModel() as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }
@@ -22,9 +22,7 @@ class PreviewViewModelFactory private constructor(private val repository: BatikR
 
         fun getInstance(application: Application): PreviewViewModelFactory =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: PreviewViewModelFactory(
-                    BatikRepository.getInstance(application)
-                )
+                INSTANCE ?: PreviewViewModelFactory()
             }
     }
 }
