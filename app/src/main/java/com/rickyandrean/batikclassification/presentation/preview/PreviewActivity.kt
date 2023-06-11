@@ -4,12 +4,12 @@ import android.Manifest
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityPreviewBinding
@@ -19,16 +19,13 @@ import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
 import com.rickyandrean.batikclassification.presentation.detail.DetailActivity
 import com.rickyandrean.batikclassification.presentation.preprocess.PreprocessActivity
 import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.common.ops.NormalizeOp
-import org.tensorflow.lite.support.image.ImageProcessor
-import org.tensorflow.lite.support.image.TensorImage
-import org.tensorflow.lite.support.image.ops.ResizeOp
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 class PreviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreviewBinding
     private lateinit var previewViewModel: PreviewViewModel
-    private val labels = listOf("Cendrawasih", "Geblek Renteng", "Insang", "Kawung", "Mega Mendung", "Parang", "Pring Sdapur", "Simbut", "Sogan", "Truntum")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +69,7 @@ class PreviewActivity : AppCompatActivity() {
 
         binding.btnPreviewSubmit.setOnClickListener {
             if (previewViewModel.image.value != null) {
-                 classifyImage()
+                 classifyImage(previewViewModel.image.value!!)
             }
         }
     }
@@ -123,47 +120,52 @@ class PreviewActivity : AppCompatActivity() {
         const val REQUEST_CODE_PERMISSIONS = 10
     }
 
-    private fun classifyImage() {
-        // Image preprocessing
-        val preprocessing = ImageProcessor.Builder()
-            .add(NormalizeOp(0.0f, 1.0f))
-            .add(ResizeOp(224, 224, ResizeOp.ResizeMethod.BILINEAR))
-            .build()
-        val inputImage = TensorImage(DataType.FLOAT32).apply {
-            load(previewViewModel.image.value)
-        }.run {
-            preprocessing.process(this)
+    private fun classifyImage(image: Bitmap) {
+        // Preprocess the image (rescaling)
+        val byteBuffer: ByteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3)
+        byteBuffer.order(ByteOrder.nativeOrder())
+        val intValues = IntArray(224 * 224)
+        image.getPixels(intValues, 0, image.width, 0, 0, image.width, image.height)
+        var pixel = 0
+
+        for (i in 0 until 224) {
+            for (j in 0 until 224) {
+                val `val` = intValues[pixel++] // RGB
+                byteBuffer.putFloat((`val` shr 16 and 0xFF) * (1f / 255))
+                byteBuffer.putFloat((`val` shr 8 and 0xFF) * (1f / 255))
+                byteBuffer.putFloat((`val` and 0xFF) * (1f / 255))
+            }
         }
 
-        // Create batik model, prepare input, output and do process step
+        // Create batik model, prepare input, do classification and get the output
         val model = Batik.newInstance(applicationContext)
-        val input = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32).apply {
-            loadBuffer(inputImage.buffer)
-        }
+        val input = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
+        input.loadBuffer(byteBuffer)
+
         val process = model.process(input)
         val output = process.outputFeature0AsTensorBuffer.floatArray
+        model.close()
 
-        // Get the result
+        // Get The Result
         var bestIndex = 0
-        var confidenceScore = 0.00f
+        var bestConfidenceScore = 0.00f
 
         output.forEachIndexed { index, fl ->
             if (output[bestIndex] < fl) {
                 bestIndex = index
-                confidenceScore = fl
+                bestConfidenceScore = fl
             }
-
-            Log.d("classification_result", fl.toString())
         }
 
-        Log.d("classification_result", labels[bestIndex])
-        Log.d("classification_result", confidenceScore.toString())
+        val confidenceScore = bestConfidenceScore * 100
 
-        model.close()
-
-        val predictResult = PredictResponse(bestIndex+1, (confidenceScore*100).toString(), previewViewModel.image.value!!)
-        val intent = Intent(this@PreviewActivity, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.PREDICT_RESULT, predictResult)
-        startActivity(intent)
+        if (confidenceScore >= 99.0F) {
+            val predictResult = PredictResponse(bestIndex+1, String.format("%.2f", confidenceScore), previewViewModel.image.value!!)
+            val intent = Intent(this@PreviewActivity, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.PREDICT_RESULT, predictResult)
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "Maaf, gambar yang diambil bukan merupakan Batik!", Toast.LENGTH_LONG).show()
+        }
     }
 }
