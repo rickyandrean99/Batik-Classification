@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -165,7 +166,8 @@ class PreviewActivity : AppCompatActivity() {
             intent.putExtra(DetailActivity.PREDICT_RESULT, predictResult)
             startActivity(intent)
         } else {
-            Toast.makeText(this, "Score hanya " + String.format("%.2f", confidenceScore) + "%", Toast.LENGTH_LONG).show()
+            Log.d("prediction", "Score hanya " + String.format("%.2f", confidenceScore) + "%")
+            Toast.makeText(this, "Maaf, gambar yang diambil bukan merupakan Batik!", Toast.LENGTH_LONG).show()
         }
     }
 }
