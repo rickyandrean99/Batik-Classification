@@ -8,24 +8,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityPreviewBinding
 import com.rickyandrean.batikclassification.model.ImageClassifier
-import com.rickyandrean.batikclassification.model.PredictResponse
 import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
-import com.rickyandrean.batikclassification.presentation.detail.DetailActivity
 import com.rickyandrean.batikclassification.presentation.preprocess.PreprocessActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import org.tensorflow.lite.DataType
-//import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
 
 class PreviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreviewBinding
