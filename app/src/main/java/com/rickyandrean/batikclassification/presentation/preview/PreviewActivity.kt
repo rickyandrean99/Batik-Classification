@@ -19,6 +19,9 @@ import com.rickyandrean.batikclassification.model.PredictResponse
 import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
 import com.rickyandrean.batikclassification.presentation.detail.DetailActivity
 import com.rickyandrean.batikclassification.presentation.preprocess.PreprocessActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.tensorflow.lite.DataType
 //import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.nio.ByteBuffer
@@ -116,27 +119,9 @@ class PreviewActivity : AppCompatActivity() {
         }
     }
 
-    private fun preprocessImage(bitmap: Bitmap, inputWidth: Int, inputHeight: Int): FloatArray {
-        val resizedBitmap = Bitmap.createScaledBitmap(bitmap, inputWidth, inputHeight, true)
-
-        // Normalize pixel values to [0, 1]
-        val inputSize = inputWidth * inputHeight
-        val floatValues = FloatArray(inputSize * 3)
-        val imageBuffer = IntArray(inputSize)
-        resizedBitmap.getPixels(imageBuffer, 0, inputWidth, 0, 0, inputWidth, inputHeight)
-
-        for (i in 0 until inputSize) {
-            val pixel = imageBuffer[i]
-            floatValues[i * 3 + 0] = ((pixel shr 16 and 0xFF).toFloat() / 1.0f)  // Red channel
-            floatValues[i * 3 + 1] = ((pixel shr 8 and 0xFF).toFloat() / 1.0f)   // Green channel
-            floatValues[i * 3 + 2] = ((pixel and 0xFF).toFloat() / 1.0f)        // Blue channel
-        }
-
-        return floatValues
-    }
-
     private fun classifyImage(image: Bitmap) {
-
+        val result = imageClassifier.classifyImage(image)
+        Log.d("classification_result", result.toString())
     }
 
     companion object {
