@@ -5,6 +5,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
@@ -19,6 +21,7 @@ import com.rickyandrean.batikclassification.model.PredictResponse
 import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
 import com.rickyandrean.batikclassification.presentation.detail.DetailActivity
 import com.rickyandrean.batikclassification.presentation.preprocess.PreprocessActivity
+import java.util.concurrent.Executors
 
 class PreviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreviewBinding
@@ -31,11 +34,32 @@ class PreviewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         previewViewModel = ViewModelProvider(this, PreviewViewModelFactory.getInstance(application))[PreviewViewModel::class.java]
-        imageClassifier = ImageClassifier(assets)
 
         setupView()
         setListener()
         setupObserver()
+
+        initializeModelClassifier()
+    }
+
+    private fun initializeModelClassifier() {
+        val executor = Executors.newSingleThreadExecutor()
+        val handler = Handler(Looper.getMainLooper())
+
+        Toast.makeText(this, "Initializing model and OpenCL for GPU Acceleration", Toast.LENGTH_SHORT).show()
+
+        executor.execute {
+            try {
+                imageClassifier = ImageClassifier(assets)
+
+                handler.post {
+                    previewViewModel.setReady()
+                    Toast.makeText(this@PreviewActivity, "Model ready to classify image!", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            }
+        }
     }
 
     private fun setupView() {
@@ -56,19 +80,36 @@ class PreviewActivity : AppCompatActivity() {
             if (it != null) {
                 binding.btnPreviewSubmit.isEnabled = true
                 binding.btnPreviewSubmit.setBackgroundResource(R.drawable.bg_sapphire)
-                binding.btnAddRemovePhoto.text = resources.getString(R.string.remove_photo)
-                binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_light_red)
+
+                if (previewViewModel.ready.value!!) {
+                    binding.btnAddRemovePhoto.text = resources.getString(R.string.remove_photo)
+                    binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_light_red)
+                }
             } else {
                 binding.btnPreviewSubmit.isEnabled = false
                 binding.btnPreviewSubmit.setBackgroundResource(R.drawable.bg_light_grey)
-                binding.btnAddRemovePhoto.text = resources.getString(R.string.add_photo)
+
+                if (previewViewModel.ready.value!!) {
+                    binding.btnAddRemovePhoto.text = resources.getString(R.string.add_photo)
+                    binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_sapphire)
+                }
+            }
+        }
+
+        previewViewModel.ready.observe(this) {
+            if (it) {
+                binding.btnAddRemovePhoto.isEnabled = true
                 binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_sapphire)
+            } else {
+                binding.btnAddRemovePhoto.isEnabled = false
+                binding.btnAddRemovePhoto.setBackgroundResource(R.drawable.bg_light_grey)
             }
         }
 
         binding.btnPreviewSubmit.setOnClickListener {
             if (previewViewModel.image.value != null) {
-                 classifyImage(previewViewModel.image.value!!)
+                Toast.makeText(this, "Processing image", Toast.LENGTH_SHORT).show()
+                classifyImage(previewViewModel.image.value!!)
             }
         }
     }
