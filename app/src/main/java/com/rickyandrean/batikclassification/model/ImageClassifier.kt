@@ -3,19 +3,14 @@ package com.rickyandrean.batikclassification.model
 import android.content.res.AssetFileDescriptor
 import android.content.res.AssetManager
 import android.graphics.Bitmap
-import android.util.Log
 import org.tensorflow.lite.DataType
 import java.io.FileInputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import org.tensorflow.lite.Interpreter
 import org.tensorflow.lite.gpu.GpuDelegate
-import org.tensorflow.lite.nnapi.NnApiDelegate
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.io.File
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
 
 class ImageClassifier(private val assetManager: AssetManager) {
     private var interpreter: Interpreter
@@ -46,18 +41,9 @@ class ImageClassifier(private val assetManager: AssetManager) {
         outputProbabilityBuffer = TensorBuffer.createFixedSize(intArrayOf(1, 10), DataType.FLOAT32)
     }
 
-    fun classifyImage(bitmap: Bitmap): List<String> {
+    fun classifyImage(bitmap: Bitmap): FloatArray {
         inputImageBuffer.load(bitmap)
         interpreter.run(inputImageBuffer.buffer, outputProbabilityBuffer.buffer)
-
-        val labels = listOf("Batik Cendrawasih", "Batik Geblek Renteng", "Batik Insang", "Batik Kawung", "Batik Mega Mendung", "Batik Parang", "Batik Pring Sedapur", "Batik Sogan", "Batik Simbut", "Batik Truntum")
-
-        val results = mutableListOf<String>()
-        val probabilities = outputProbabilityBuffer.floatArray
-        for (i in probabilities.indices) {
-            results.add("${labels[i]}: ${probabilities[i]}")
-        }
-
-        return results
+        return outputProbabilityBuffer.floatArray
     }
 }

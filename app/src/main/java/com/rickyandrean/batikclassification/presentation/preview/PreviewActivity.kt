@@ -8,13 +8,16 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rickyandrean.batikclassification.R
 import com.rickyandrean.batikclassification.databinding.ActivityPreviewBinding
 import com.rickyandrean.batikclassification.model.ImageClassifier
+import com.rickyandrean.batikclassification.model.PredictResponse
 import com.rickyandrean.batikclassification.presentation.camera.CameraActivity
+import com.rickyandrean.batikclassification.presentation.detail.DetailActivity
 import com.rickyandrean.batikclassification.presentation.preprocess.PreprocessActivity
 
 class PreviewActivity : AppCompatActivity() {
@@ -110,8 +113,31 @@ class PreviewActivity : AppCompatActivity() {
     }
 
     private fun classifyImage(image: Bitmap) {
-        val result = imageClassifier.classifyImage(image)
-        Log.d("classification_result", result.toString())
+        val convertedImage = Bitmap.createScaledBitmap(image, 600, 600, false)
+        val result = imageClassifier.classifyImage(convertedImage)
+
+        var bestIndex = 0
+        var bestConfidenceScore = 0.00f
+
+        result.forEachIndexed { index, fl ->
+            if (fl >= result[bestIndex]) {
+                bestIndex = index
+                bestConfidenceScore = fl
+            }
+        }
+
+        val confidenceScore = bestConfidenceScore * 100
+        if (confidenceScore >= 90.0F) {
+            val convertedImage2 = Bitmap.createScaledBitmap(convertedImage, 224, 224, false)
+
+            val predictResult = PredictResponse(bestIndex+1, String.format("%.2f", confidenceScore), convertedImage2)
+            val intent = Intent(this@PreviewActivity, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.PREDICT_RESULT, predictResult)
+            startActivity(intent)
+        } else {
+            Log.d("prediction", "Score hanya " + String.format("%.2f", confidenceScore) + "%")
+            Toast.makeText(this, "Maaf, bukan batik!\n(Score: " + String.format("%.2f", confidenceScore) + "%)", Toast.LENGTH_LONG).show()
+        }
     }
 
     companion object {
