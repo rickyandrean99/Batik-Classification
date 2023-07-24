@@ -167,7 +167,7 @@ class PreviewActivity : AppCompatActivity() {
             startActivity(intent)
         } else {
             Log.d("prediction", "Score hanya " + String.format("%.2f", confidenceScore) + "%")
-            Toast.makeText(this, "Maaf, gambar yang diambil bukan merupakan Batik!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Maaf, bukan batik!\n(Score: " + String.format("%.2f", confidenceScore) + "%)", Toast.LENGTH_LONG).show()
         }
     }
 }
