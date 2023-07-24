@@ -168,7 +168,7 @@ class PreviewActivity : AppCompatActivity() {
         }
 
         val confidenceScore = bestConfidenceScore * 100
-        if (confidenceScore >= 95.0F) {
+        if (confidenceScore >= 90.0F) {
             val convertedImage2 = Bitmap.createScaledBitmap(convertedImage, 224, 224, false)
 
             val predictResult = PredictResponse(bestIndex+1, String.format("%.2f", confidenceScore), convertedImage2)
