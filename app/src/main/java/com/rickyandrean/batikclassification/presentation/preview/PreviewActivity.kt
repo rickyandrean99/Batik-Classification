@@ -160,7 +160,7 @@ class PreviewActivity : AppCompatActivity() {
 
         val confidenceScore = bestConfidenceScore * 100
 
-        if (confidenceScore >= 99.0F) {
+        if (confidenceScore >= 90.0F) {
             val predictResult = PredictResponse(bestIndex+1, String.format("%.2f", confidenceScore), previewViewModel.image.value!!)
             val intent = Intent(this@PreviewActivity, DetailActivity::class.java)
             intent.putExtra(DetailActivity.PREDICT_RESULT, predictResult)
