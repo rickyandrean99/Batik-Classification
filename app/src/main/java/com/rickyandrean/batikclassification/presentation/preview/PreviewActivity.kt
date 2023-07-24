@@ -152,7 +152,7 @@ class PreviewActivity : AppCompatActivity() {
         var bestConfidenceScore = 0.00f
 
         output.forEachIndexed { index, fl ->
-            if (output[bestIndex] < fl) {
+            if (fl >= output[bestIndex]) {
                 bestIndex = index
                 bestConfidenceScore = fl
             }
