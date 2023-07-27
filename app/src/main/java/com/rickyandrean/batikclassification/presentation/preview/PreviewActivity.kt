@@ -27,6 +27,8 @@ class PreviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPreviewBinding
     private lateinit var previewViewModel: PreviewViewModel
     private lateinit var imageClassifier: ImageClassifier
+    var startTime: Long = 0
+    var endTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,6 +109,7 @@ class PreviewActivity : AppCompatActivity() {
         }
 
         binding.btnPreviewSubmit.setOnClickListener {
+            startTime = System.currentTimeMillis()
             if (previewViewModel.image.value != null) {
                 Toast.makeText(this, "Processing image", Toast.LENGTH_SHORT).show()
                 classifyImage(previewViewModel.image.value!!)
@@ -170,6 +173,9 @@ class PreviewActivity : AppCompatActivity() {
         val confidenceScore = bestConfidenceScore * 100
         if (confidenceScore >= 90.0F) {
             val convertedImage2 = Bitmap.createScaledBitmap(convertedImage, 224, 224, false)
+
+            endTime = System.currentTimeMillis()
+            Log.d("test_duration", (endTime - startTime).toString() + "ms")
 
             val predictResult = PredictResponse(bestIndex+1, String.format("%.2f", confidenceScore), convertedImage2)
             val intent = Intent(this@PreviewActivity, DetailActivity::class.java)
